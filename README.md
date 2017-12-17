@@ -1,6 +1,12 @@
 # kitti_native_evaluation
 
-`evaluate_object_3d_offline.cpp`evaluates your KITTI detection locally on your own computer using your validation data selected from KITTI training dataset, with the following metrics:
+This code is based on Bo Li's repository: https://github
+.com/prclibo/kitti_eval with the main differences being some code cleanup and
+ additional AHS metric described in our paper: [Joint 3D Proposal Generation and Object Detection from View Aggregation
+                                               ](https://arxiv.org/abs/1712.02294)
+
+`evaluate_object_3d_offline.cpp` evaluates your KITTI detection locally on 
+your own computer using your validation data selected from KITTI training dataset, with the following metrics:
 
 - overlap on image (AP)
 - oriented overlap on image (AOS)
