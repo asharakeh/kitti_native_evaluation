@@ -1,7 +1,6 @@
 # kitti_native_evaluation
 
-This code is based on Bo Li's repository: https://github
-.com/prclibo/kitti_eval with the main differences being some code cleanup and
+This code is based on Bo Li's repository: https://github.com/prclibo/kitti_eval with the main differences being some code cleanup and
  additional AHS metric described in our paper: [Joint 3D Proposal Generation and Object Detection from View Aggregation
                                                ](https://arxiv.org/abs/1712.02294)
 
