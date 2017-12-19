@@ -764,10 +764,10 @@ void saveAndPlotPlots(string dir_name,string file_name,string obj_type,vector<do
     for (int v = 0; v < 3; ++v)
         for (int i = 0; i < vals[v].size(); i = i + 4)
             sum[v] += vals[v][i];
-    if (is_aos){
-        printf("%s AHS: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
-    }else
-        printf("%s AP: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
+
+    printf("%s : %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] /
+            11 * 100, sum[2] / 11 * 100);
+
 
 
   // create png + eps
@@ -913,9 +913,11 @@ bool eval(string gt_dir, string result_dir, Mail* mail){
         return false;
       }
       fclose(fp_det);
-      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection", CLASS_NAMES[c], precision, 0);
+      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_AP",
+                       CLASS_NAMES[c], precision, 0);
       if(compute_aos){
-        saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_orientation", CLASS_NAMES[c], aos, 1);
+        saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_orientation_AOS",
+                         CLASS_NAMES[c], aos, 1);
         fclose(fp_ori);
       }
     }
@@ -937,9 +939,10 @@ bool eval(string gt_dir, string result_dir, Mail* mail){
         return false;
       }
       fclose(fp_det);
-      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_BEV",CLASS_NAMES[c], precision, 0);
+      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_BEV_AP",
+                       CLASS_NAMES[c], precision, 0);
       if(compute_aos_ground)
-          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_BEV",
+          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_orientation_BEV_AHS",
                            CLASS_NAMES[c], aos_ground, 1);
 
     }
@@ -958,9 +961,10 @@ bool eval(string gt_dir, string result_dir, Mail* mail){
         return false;
       }
       fclose(fp_det);
-      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_3D",CLASS_NAMES[c], precision, 0);
+      saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_3D_AP",
+                       CLASS_NAMES[c], precision, 0);
       if(compute_aos_ground)
-          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_3D",
+          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_orientation_3D_AHS",
                            CLASS_NAMES[c], aos_ground, 1);    }
   }
 
