@@ -25,7 +25,7 @@ From inside the main folder do:
 #### Usage:
 Run the evalutaion by:
 
-    ./evaluate_object_offline groundtruth_dir result_dir
+    ./evaluate_object_3d_offline groundtruth_dir result_dir
     
 Note that you don't have to detect over all KITTI training data. The evaluator only evaluates samples whose result files exist.
 
