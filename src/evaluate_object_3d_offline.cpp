@@ -747,23 +747,27 @@ void printAp(string file_name, vector<double> vals[]){
   printf("%s AP: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
 
 }
-void saveAndPlotPlots(string dir_name,string file_name,string obj_type,vector<double> vals[],bool is_aos){
+void saveAndPlotPlots(string dir_name,string file_name,string obj_type,vector<double> vals[],bool is_aos) {
 
-  char command[1024];
+    char command[1024];
 
-  // save plot data to file
-  FILE *fp = fopen((dir_name + "/" + file_name + ".txt").c_str(),"w");
-  // printf("save %s\n", (dir_name + "/" + file_name + ".txt").c_str());
+    // save plot data to file
+    FILE *fp = fopen((dir_name + "/" + file_name + ".txt").c_str(), "w");
+    // printf("save %s\n", (dir_name + "/" + file_name + ".txt").c_str());
 
-  for (int32_t i=0; i<(int)N_SAMPLE_PTS; i++)
-    fprintf(fp,"%f %f %f %f\n",(double)i/(N_SAMPLE_PTS-1.0),vals[0][i],vals[1][i],vals[2][i]);
-  fclose(fp);
+    for (int32_t i = 0; i < (int) N_SAMPLE_PTS; i++)
+        fprintf(fp, "%f %f %f %f\n", (double) i / (N_SAMPLE_PTS - 1.0),
+                vals[0][i], vals[1][i], vals[2][i]);
+    fclose(fp);
 
-  float sum[3] = {0, 0, 0};
-  for (int v = 0; v < 3; ++v)
-      for (int i = 0; i < vals[v].size(); i = i + 4)
-          sum[v] += vals[v][i];
-  printf("%s AP: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
+    float sum[3] = {0, 0, 0};
+    for (int v = 0; v < 3; ++v)
+        for (int i = 0; i < vals[v].size(); i = i + 4)
+            sum[v] += vals[v][i];
+    if (is_aos){
+        printf("%s AHS: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
+    }else
+        printf("%s AP: %f %f %f\n", file_name.c_str(), sum[0] / 11 * 100, sum[1] / 11 * 100, sum[2] / 11 * 100);
 
 
   // create png + eps
@@ -810,12 +814,12 @@ void saveAndPlotPlots(string dir_name,string file_name,string obj_type,vector<do
   }
 
   // create pdf and crop
-  //sprintf(command,"cd %s; ps2pdf %s.eps %s_large.pdf",dir_name.c_str(),file_name.c_str(),file_name.c_str());
-  //system(command);
-  //sprintf(command,"cd %s; pdfcrop %s_large.pdf %s.pdf",dir_name.c_str(),file_name.c_str(),file_name.c_str());
-  //system(command);
-  //sprintf(command,"cd %s; rm %s_large.pdf",dir_name.c_str(),file_name.c_str());
-  //system(command);
+  sprintf(command,"cd %s; ps2pdf %s.eps %s_large.pdf",dir_name.c_str(),file_name.c_str(),file_name.c_str());
+  system(command);
+  sprintf(command,"cd %s; pdfcrop %s_large.pdf %s.pdf",dir_name.c_str(),file_name.c_str(),file_name.c_str());
+  system(command);
+  sprintf(command,"cd %s; rm %s_large.pdf",dir_name.c_str(),file_name.c_str());
+  system(command);
 }
 
 vector<int32_t> getEvalIndices(const string& result_dir) {
@@ -935,7 +939,9 @@ bool eval(string gt_dir, string result_dir, Mail* mail){
       fclose(fp_det);
       saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_BEV",CLASS_NAMES[c], precision, 0);
       if(compute_aos_ground)
-        printAp(CLASS_NAMES[c] + "_heading_BEV",aos_ground);
+          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_BEV",
+                           CLASS_NAMES[c], aos_ground, 1);
+
     }
   }
 
@@ -954,8 +960,8 @@ bool eval(string gt_dir, string result_dir, Mail* mail){
       fclose(fp_det);
       saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_3D",CLASS_NAMES[c], precision, 0);
       if(compute_aos_ground)
-        printAp(CLASS_NAMES[c] + "_heading_3D",aos_ground);
-    }
+          saveAndPlotPlots(plot_dir, CLASS_NAMES[c] + "_detection_3D",
+                           CLASS_NAMES[c], aos_ground, 1);    }
   }
 
 
