@@ -15,7 +15,10 @@ your own computer using your validation data selected from KITTI training datase
 - oriented overlap in 3D (3D AHS)
 
 #### Compilation:
+Clone the repo using: 
+`git clone https://github.com/asharakeh/kitti_native_evaluation.git`
 
+From inside the main folder do:
 1. `cmake ./`
 2. `make`
 
