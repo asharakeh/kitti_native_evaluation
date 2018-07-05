@@ -29,6 +29,16 @@ Run the evalutaion by:
     
 Note that you don't have to detect over all KITTI training data. The evaluator only evaluates samples whose result files exist.
 
+## Data Format:
+The detection format should be the same as KITTI's Ground Truth Text Format with an additional "Score" value at the end of each line.
+Example: 
+Pedestrian 0.00 2 0.29 873.70 152.10 933.44 256.07 1.87 0.50 0.90 5.42 1.50 13.43 0.67 0.99
+Car 0.00 0 1.74 444.29 171.04 504.95 225.82 1.86 1.57 3.83 -4.95 1.83 26.64 1.55 0.85
+Pedestrian 0.00 0 -0.39 649.28 168.10 664.61 206.40 1.78 0.53 0.95 2.20 1.57 34.08 -0.33 0.21
+
+The name of files should correspond to the name of the frame it originated from. 
+Example: 000000.txt detection file will corresponds to the 000000 frame and will be evaluated using the 000000.txt ground truth. 
+
 ## Citation:
 If you are using this code, please cite our paper:
 
