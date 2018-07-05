@@ -33,7 +33,7 @@ Note that you don't have to detect over all KITTI training data. The evaluator o
 The detection format should be simillar to the KITTI dataset label format with 15 columns representing:
 
 | Values        | Name           | Description  |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:|:-----|
 | 1 |type| Describes the type of object: 'Car', 'Van', 'Truck', 'Pedestrian', 'Person_sitting', 'Cyclist', 'Tram', 'Misc' or 'DontCare'|
 | 1 |truncated| -1|
 | 1 |occluded| -1|
@@ -45,6 +45,7 @@ The detection format should be simillar to the KITTI dataset label format with 1
 | 1 | score | Only for results: Float, indicating confidence in detection, needed for p/r curves, higher is better.|
  
 Example:
+
 | type |truncated| occluded| alpha| bbox | dimensions | location | rotation_y| score|
 | ---- |:----:|:----:|:----:|:----:| :----:| :----:|:----:|----:|
 |Pedestrian| -1 |-1 |0.29| 873.70 152.10 933.44 256.07| 1.87 0.50 0.90| 5.42 1.50 13.43| 0.67| 0.99|
