@@ -46,9 +46,8 @@ The detection format should be simillar to the KITTI dataset label format with 1
  
 Example:
 | type |truncated| occluded| alpha| bbox | dimensions | location | rotation_y| score|
+| ---- |:----:|:----:|:----:|:----:| :----:| :----:|:----:|----:|
 |Pedestrian| -1 |-1 |0.29| 873.70 152.10 933.44 256.07| 1.87 0.50 0.90| 5.42 1.50 13.43| 0.67| 0.99|
-
-
 
 ## Citation:
 If you are using this code, please cite our paper:
