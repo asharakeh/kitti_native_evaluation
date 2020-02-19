@@ -4,8 +4,9 @@ Disclaimer:
 - These days, I found this code to be too slow for the turnover rate in deep learning development. I personally switched to using numba as done in https://github.com/traveller59/second.pytorch to compute AP in much faster times (~10 seconds per full run on validation set). I recommend you take a look if you need faster code with python integration.
 
 Updates:
-- 18/02/2020: I am not actively developing this repository anymore. This will be the last update for the time being.
+- 17/12/2017: Initial release.
 - 18/02/2020: This code complies with the 40 recall point change on the official KITTI website.
+- 18/02/2020: I am not actively developing this repository anymore. This will be the last update for the time being.
 
 This code is based on Bo Li's repository: https://github.com/prclibo/kitti_eval with the main differences being some code cleanup and
  additional AHS metric described in our paper: [Joint 3D Proposal Generation and Object Detection from View Aggregation
